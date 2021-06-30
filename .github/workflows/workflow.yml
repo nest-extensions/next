@@ -1,0 +1,21 @@
+name: CI
+on: push
+jobs:
+  publish:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - name: Install pnpm
+        run: npm i -g pnpm
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build Project
+        run: pnpm build
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpx semantic-release

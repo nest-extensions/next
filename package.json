@@ -1,0 +1,67 @@
+{
+	"name": "@nest-extensions/next",
+	"version": "0.0.0-development",
+	"main": "lib/index.js",
+	"typings": "lib/index.d.ts",
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"lib"
+	],
+	"peerDependencies": {
+		"@nestjs/common": "^7.0.0",
+		"express": "^4.0.0",
+		"next": "^11.0.1"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^12.1.4",
+		"@commitlint/config-conventional": "^12.1.4",
+		"@nestjs/common": "^7.6.18",
+		"@semantic-release/changelog": "^5.0.1",
+		"@semantic-release/git": "^9.0.0",
+		"@types/express": "^4.17.12",
+		"express": "^4.17.1",
+		"husky": "^6.0.0",
+		"next": "^11.0.1",
+		"rxjs": "^7.1.0",
+		"semantic-release": "^17.4.3",
+		"typescript": "^4.3.2"
+	},
+	"scripts": {
+		"build": "tsc",
+		"semantic-release": "semantic-release",
+		"prepare": "husky install"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/nest-extensions/next.git"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"release": {
+		"branches": [
+			"master"
+		],
+		"plugins": [
+			"@semantic-release/commit-analyzer",
+			"@semantic-release/release-notes-generator",
+			"@semantic-release/changelog",
+			"@semantic-release/github",
+			"@semantic-release/npm",
+			[
+				"@semantic-release/git",
+				{
+					"assets": [
+						"CHANGELOG.md",
+						"package.json"
+					],
+					"message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+				}
+			]
+		]
+	}
+}
