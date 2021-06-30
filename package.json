@@ -1,5 +1,6 @@
 {
 	"name": "@nest-extensions/next",
+	"description": "A library allowing you to serve a Next.js app with a NestJS controller",
 	"version": "0.0.0-development",
 	"main": "lib/index.js",
 	"typings": "lib/index.d.ts",
